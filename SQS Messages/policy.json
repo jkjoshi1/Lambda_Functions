@@ -1,0 +1,40 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-east-2:{**accountid**}:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-2:{**accountid**}:log-group:/aws/lambda/LambdaSqsTrigger:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:us-east-2:{**accountid**}:table/{**tablename**}"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sqs:Describe*",
+                "sqs:Get*",
+                "sqs:List*",
+                "sqs:DeleteMessage",
+                "sqs:ReceiveMessage"
+            ],
+            "Resource": "arn:aws:sqs:us-east-2:{**accountid**}:{**sqslistname**}"
+        }
+    ]
+}
